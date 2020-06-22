@@ -1,0 +1,22 @@
+<!-- loads the path to static file> -->
+{% extends 'music/base.html' %}
+
+{% block music_block %}
+
+{% if all_albums %}
+    <h3>Here are all my albums</h3>
+    <ul>
+        {% for album in all_albums %}
+        <li>
+            <a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a>
+        </li>
+            <a href="{% url 'music:delete' album.id %}" class="btn">delete</a>
+            <a href="{% url 'music:update' album.id %}" class="btn">edit</a>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <h3> Please add some albums</h3>
+{% endif %}
+
+{% endblock %}

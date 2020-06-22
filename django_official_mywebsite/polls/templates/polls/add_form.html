@@ -1,0 +1,23 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}New {{ form_type }}{% endblock %}
+
+{% block content %}
+
+<p>Here you can {{ action }} a {{ form_type }}</p>
+
+<form action="" method="post">
+{% csrf_token %}
+    {% include 'polls/form_template.html' %}
+
+{#     {{ form.question_text.label_tag }}#}
+{#    <input type="text" name="question_text" maxlength="200" required id="id_question_text"#}
+{#           {% if form.question_text.value %}value="{{ form.question_text.value }}"{% endif %}#}
+{#           placeholder="Eg. How is the josh?"#}
+{#           >#}
+
+
+    <input type="submit" value="{{ action }} {{ form_type }}">
+</form>
+
+{% endblock %}

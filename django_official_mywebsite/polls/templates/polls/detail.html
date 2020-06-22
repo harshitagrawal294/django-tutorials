@@ -1,0 +1,31 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+
+
+<h1>{{ question.question_text }}</h1>
+    <a href="{% url 'polls:edit_question' question.id %}">Edit</a>
+    <a href="{% url 'polls:add_choice' question.id %}">add choice</a>
+
+{% if error_message %} <p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <li>
+            <input type="radio" id="choice{{ forloop.counter }}" name="choice" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+            <a href="{% url 'polls:edit_choice' choice.id %}">edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <input type="submit" value="vote">
+</form>
+
+
+
+{% endblock %}
+

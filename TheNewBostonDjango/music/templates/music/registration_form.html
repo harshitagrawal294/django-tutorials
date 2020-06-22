@@ -1,0 +1,18 @@
+{% extends 'music/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block music_block %}
+
+
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'music/form-template.html' %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </form>
+
+
+
+{% endblock %}
